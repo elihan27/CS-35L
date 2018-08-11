@@ -1,0 +1,66 @@
+#!/bin/sh
+#the attempt to handle spaces
+#Elizabeth Han
+#004815046
+#sameln
+
+IFS=$'\n'
+DIR=$1
+export LC_ALL='C'
+
+
+for file1 in `find $DIR -maxdepth 1 -type f | sort`
+do
+
+    for file2 in `find $DIR -maxdepth 1 -type f | sort `
+        do
+	   # echo File1 is $file1
+	   # echo File2 is $file2
+#	    unset IFS
+	    name1=`echo $file1 | cut -d '/' -f 2 `
+	    #`ls -i $file1 | cut -d ' ' -f 2` 
+	    name2=`echo $file2 | cut -d '/' -f 2`
+	   # echo Name1 is $name1
+	   # echo Name2 is $name2
+
+
+	    #`ls -i $file2 | cut -d ' ' -f 2`
+	    inode1=`ls -i $file1 | cut -d ' ' -f 1` 
+	    inode2=`ls -i $file2 | cut -d ' ' -f 1`
+	    CMP=`cmp -s $file1 $file2; echo $?`
+
+	   
+
+	    if [ ! -r $file1 ]
+	    then
+		echo This file, $name1,  is not readable to you.
+		break
+	    fi
+
+	    if [ -h $file1 ]
+	    then
+		continue
+	    fi
+	    
+ 
+	    if [ "$inode1" == "$inode2" ] #if same file
+	    then
+#		echo Exact same file!
+		continue
+		
+	    elif [ "$CMP" -eq "0" ]
+            then
+		rm -r $file2
+		ln $file1 $file2
+	    else
+	#	continue
+	#	echo Completely different file!
+		continue
+		
+	    fi
+	done
+#	
+done
+unset IFS
+
+

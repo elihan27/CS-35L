@@ -1,0 +1,157 @@
+Elizabeth Han
+004815046
+lab3.txt
+
+
+The dilemma:
+
+This command:
+$ ls -l /bin/bash
+results in this:
+-rwxr-xr-x 1 root root 729040 2009-03-02 06:22 /bin/bash
+
+The users want the traditional Unix format, which looks like this:
+$ ls -l /bin/bash
+-rwxr-xr-x 1 root root 729040 Mar  2  2009 /bin/bash
+
+
+I downloaded the core-utils file the tar version of the core-
+utils file (tar.gz for some reason, wouldn't download on mine), and moved
+to linux using
+	$ scp coreutils-7.6.tar elizabeh@lnxsrv07.seas.ucla.edu:~
+
+Created a temporary directory tempdir (since the server will not allow
+changing ls on the root directory), and untarred the file there.
+	$ tar -xf coreutils-7.6.tar 
+
+Then went into the coreutils-7.6 directory
+	$ cd coreutils-7.6
+
+To install the program from source code:
+
+	$ ./configure --prefix=/u/cs/ugrad/elizabeh/tempdir
+	tell make install to move the binary into the 
+	/u/cs/ugrad/elizabeh/tempdir path instead of default linux position
+
+	$ make
+	compile source code to binary
+
+	$ make install
+	move binary to place under the file system
+
+If we try using ls, the result will still be in the 'correct' format, since
+we're still using /usr/local/cs/bin/ls. To use the buggy core-utils ls, we 
+use:
+	$ export PATH=/u/cs/ugrad/elizabeh/tempdir/bin:$PATH
+to change PATH so that the shell will look in the proper place for the ls. 
+
+Now ls -l /bin/bash results in:
+	-rwxr-xr-x 1 root root 960632 2017-08-03 06:36 /bin/bash
+i.e the correct incorrect format.
+
+Then, apply the patch to the ls.c file in the coreutils-7.6/src directory
+	$ cd coreutils-7.6/src
+
+Then type $make in the coreutils-7.6 directory. The result:
+
+
+make[1]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6'
+Making all in lib
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/lib'
+make  all-recursive
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/lib'
+make[4]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/lib'
+make[4]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/lib'
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/lib'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/lib'
+Making all in src
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/src'
+make  all-am
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/src'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/src'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/src'
+Making all in doc
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/doc'
+Making all in man
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/man'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/man'
+Making all in po
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/po'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/po'
+Making all in tests
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/tests'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/tests'
+Making all in gnulib-tests
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/gnulib-tests'
+make  all-recursive
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/gnulib-tests'
+make[4]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/gnulib-tests'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/gnulib-tests'
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/gnulib-tests'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6/gnulib-tests'
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6'
+make[2]: Nothing to be done for 'all-am'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6'
+make[1]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/
+coreutils-7.6'
+
+The make command checks through all directories in where the 
+patch was applied (coreutils-7.6) to see what changed/needs to 
+be recompiled. 
+
+PATH is still equal to /u/cs/ugrad/elizabeh/tempdir/bin; an ls
+will still give the incorrect result:
+	$ls -l Hwords
+	-rw-r--r-- 1 elizabeh csugrad 1252 2018-01-27 
+	20:32 Hwords
+
+To get the patched ls:
+$ export PATH=/u/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src:$PATH
+
+ls should be using the traditional Unix format now.
+
+When trying this on a recent file:
+$ ls -l Hwords
+-rw-r--r-- 1 elizabeh csugrad 1252 Jan 27 20:32 Hwords
+
+When trying this on a file more than a year old:
+$ ls -l main.cpp
+-rw-r--r-- 1 elizabeh csugrad 22513 Nov 30  2016 main.cpp
+
+The difference appears to be that a file over a year old lists the year;
+a file that is not instead lists the time.
+

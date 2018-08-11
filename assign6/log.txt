@@ -1,0 +1,83 @@
+Elizabeth Han
+004815046
+log.txt
+
+We need coreutils version 8.6 or newer.
+	$ sort --version
+		sort (GNU coreutils) 8.29
+which is most definitely new enough.
+
+Next, we need to generate a file of 10 million floating point numbers.  How 
+big is a floating point on a linux server?
+	$ man limits.h
+Checking the manual page of limits.h, we can find that the data type for a 
+floating point is WORD_BIT.  To find the actual size, we use:
+	$ getconf WORD_BIT
+	32
+Which is 4 bytes, so 10 million floating point numbers would be 
+40 million bytes.
+
+Tested on 10 floating point numbers with:
+	$ od -N 40 -f /dev/urandom >10.txt
+
+From 10.txt, you can see there's always a leading address offset on each line
+ before the numbers, each with two spaces in between.  So to create a file 
+that contains only one floating point number on each line, we need to remove
+ the first word of every line, then replace each space with a \n, then make
+sure there are no repeated \n.
+
+To generate the file:
+	$ od -N 40000000 -f /dev/urandom 
+
+To remove the address, we note that each address is 7 spaces, and there are at
+least two spaces after, so we'd want to print out all the characters starting
+from the 10th:  
+	$ od -N 40000000 -f /dev/urandom | cut -c 10- 
+
+To replace each space with an \n and make sure that there are no repeated
+\n:
+	$ od -N 40000000 -f /dev/urandom | cut -c 10- | tr -s ' ' '\n'
+
+To get rid of any remaining white space:
+	$ od -N 40000000 -f /dev/urandom | cut -c 10- | tr -s ' ' '\n'| 
+	  sed '/^$/d'
+
+So the final command:
+	$ od -N 40000000 -f /dev/urandom | cut -c 10- | tr -s ' ' '\n'| sed 
+	  '/^$/d' > million.txt
+
+To check that we have the correct amount of lines:
+	$ wc -l million.txt
+	$ 10000000 million.txt
+
+To time the sort:
+	$ time -p sort -g million.txt > /dev/null
+		real 21.62
+		user 113.94
+		sys 0.48
+
+
+1thread:
+	$ time -p sort -- =1 million.txt > /dev/null
+		real 68.23
+		user 68.03
+		sys 0.19
+
+2thread:
+	$ time -p sort --parallel=2 million.txt > /dev/null
+		real 38.95
+		user 72.00
+		sys 0.29
+
+4thread:
+	$ time -p sort --parallel=4 million.txt > /dev/null
+		real 23.90
+		user 73.27
+		sys 0.40
+
+8thread:
+	$ time -p sort --parallel=8 million.txt > /dev/null
+		real 16.60
+		user 74.37
+		sys 0.47
+

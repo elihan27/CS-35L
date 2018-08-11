@@ -1,0 +1,22 @@
+Elizabeth Han
+004815046
+hw.txt
+
+1.  If the network is assumed to be secure to begin with,  the network should still be 
+secure even if the other teams were observing the bytes going across it, since the bytes 
+should be encrypted.  However, if the keyboard was tapped, it'd be possible for the teams
+ to grab the passphrase for your key. If the other teams had physical control of the USB, 
+they'd have your key.  In both these later cases, they'd be able to de-encrypt all the 
+bytes going across the network, since they'd have access to your private key, so the 
+network wouldn't be secure.
+
+2.  In the following instructions, --verify doesn't really verify that you personally 
+created the tar file in question - what it does is decrypt the signature to get a hash 
+value, then computes another hash value based on the contents of the tar file.  If the two 
+hash values match, then it outputs a good signature.  It doesn't check if the key belongs 
+to 'you', so theoretically, someone could intercept your tar file, sign it with their own 
+key, then send it with their key and get a good signature.  To solve the problem, you 
+could have a third party verify that the key used belonged to 'you'.  
+
+
+

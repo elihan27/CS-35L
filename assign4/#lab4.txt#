@@ -1,0 +1,157 @@
+Elizabeth Han
+004815046
+lab4.txt
+
+First, I downloaded and transferred the coreutils file to the linux server
+	$ scp coreutils-with-bug.tar elizabeh@lnxsrv07.seas.ucla.edu:~/35L
+
+Untar:
+	$ tar -xf coreutils-with-bug.tar 
+
+Created a temporary directory tempdir, then, to install the program from source
+code:
+
+	$ ./configure --prefix=/u/cs/ugrad/elizabeh/35L/assign4/tempdir
+	tell make install to move the binary into the /u/cs/ugrad/
+	elizabeh/35L/assign4/tempdir path instead of default linux position
+
+	$ make
+	compile source code to binary
+
+	$ make install
+
+The result:
+	It did not work. 
+
+	In file included from utimecmp.c:41:0:
+	utimens.h:2:5: error: conflicting types for 'futimens'
+	 int futimens (int, char const *, struct timespec const [2]);
+   	  ^~~~~~~~
+	In file included from utimecmp.h:25:0,
+                 from utimecmp.c:25:
+	/usr/include/sys/stat.h:373:12: note: previous declaration of 'futimens' 	
+		was here
+ 	extern int futimens (int __fd, const struct timespec __times[2]) 		
+		__THROW;
+ 
+	make[2]: *** [Makefile:659: utimecmp.o] Error 1
+	make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/35L/assign4/
+		tempdir/coreutils-with-bug/lib'
+	make[1]: *** [Makefile:775: install] Error 2
+	make[1]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/35L/assign4/
+		tempdir/coreutils-with-bug/lib'
+	make: *** [Makefile:419: install-recursive] Error 1
+
+It's necessary to apply the patch.  
+
+I downloaded the patch:
+	$ wget https://web.cs.ucla.edu/classes/winter18/cs35L/assign/
+	coreutils.diff
+
+Then applied the patch thusly:
+	$patch -p0 < /u/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils	
+	-with-bug/coreutils.diff
+And built coreutils again with the commands above.
+
+The diff patch, essentially, renamed the futimens function in utimens.c
+to the coreutils_futimens function.  This prevented conflicting types for 
+futimens and fixed the bug.
+
+To try out the buggy ls, we use:
+	$ export PATH=/u/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils-with
+	-bug/src:$PATH
+And make sure that the ls used is the correct one with
+	$ which ls
+
+Then we make a temporary directory and three files, one altered so that 
+ts timestamp is far into the past with the following commands.
+
+	 $ tmp=$(mktemp -d)
+	 $ cd $tmp
+	 $ touch -d '1918-11-11 11:00 GMT' wwi-armistice
+	 $ touch now
+	 $ sleep 1
+	 $ touch now1
+	 $ TZ=UTC0 ls -lt --full-time wwi-armistice now now1
+
+The result:
+
+-rw-r--r-- 1 elizabeh csugrad 0 1918-11-11 03:00:00.000000000 -0800 wwi-armistice
+-rw-r--r-- 1 elizabeh csugrad 0 2018-02-09 09:04:34.387438919 -0800 now1
+-rw-r--r-- 1 elizabeh csugrad 0 2018-02-09 09:04:25.874206469 -0800 now
+
+To run through the code to figure out what's wrong, we can use the command:
+$ gdb ~/35L/assign4/tempdir/coreutils-with-bug/src/ls
+
+I used $ info functions 
+to view all the functions in ls, and look for any functions that had to do with
+comparing time.  I found compare_atime, compare_ctime, and compare_mtime.
+
+I then set breakpoints at all of these functions with (gdb) b [function] 
+(ex: (gdb) b compare_mtime) and let the program run with:
+	(gdb) r -lt --full-time wwi-armistice now now1
+I stepped through with (gdb) s.
+
+
+2884	static int compare_mtime (V a, V b) { return cmp_mtime (a, b, 
+xstrcoll); }
+(gdb) s
+cmp_mtime (cmp=0x4045f0 <xstrcoll>, b=0x617230, a=0x617180) at ls.c:2884
+2884	static int compare_mtime (V a, V b) { return cmp_mtime (a, b, 
+xstrcoll); }
+(gdb) s
+timespec_cmp (b=..., a=...) at ../lib/timespec.h:48
+48	  int diff = a.tv_sec - b.tv_sec;
+(gdb) s
+49	  return diff ? diff : a.tv_nsec - b.tv_nsec;
+
+Checking the local variables here with (gdb) info locals gets diff = 9, but
+running through another iteration gets diff = -1162427022, which looks like
+overflow.
+
+If we check the timestamp, we can see that the difference between now and now1
+is about 9 seconds, so diff must have been the result of now1(time) - now(time).
+But if we were to try and subtract armistice(time) from now(time) or now1(time),
+the result would be far too big to be represented (thus resulting in 
+-1162427022).
+
+According to gdb, the bug is in /lib/timespec.h. 
+	$ cd ~/35L/assign4/tempdir/coreutils-with-bug/lib
+	$ cp timespec.h time.h
+	$ mv time.h ~/35L/assign4/tempdir
+	$ mv time.h timespec.h
+		save a copy of timespec.h just in case
+
+Edit timespec.h file, then produce patch with:
+	$ diff -u coreutils-with-bug/lib/timespec.h 
+	timespec.h > lab4.diff 
+
+We can grab the changelog with C-x 4 a, and append that to the front of the
+diff file.
+
+To test if this actually worked, apply patch with $patch p0 < lab4.diff
+and then $ make.Then cd back into the $temp directory and run:
+
+$ TZ=UTC0 ls -lt --full-time wwi-armistice now now1
+
+again.  The command should now display the files in the correct order.
+
+
+When trying to reproduce the problem in the home directory of the linux server,
+using these commands:
+	$ touch -d '1918-11-11 11:00 GMT' wwi-armistice
+	$ touch now
+	$ sleep 1
+	$ touch now1
+	$ ls -lt --full-time wwi-armistice now now1
+
+
+The result is this:
+-rw-r--r-- 1 elizabeh csugrad 0 2054-12-17 09:28:16.000000000 -0800 wwi-armistice
+-rw-r--r-- 1 elizabeh csugrad 0 2018-02-16 20:35:59.430310000 -0800 now1
+-rw-r--r-- 1 elizabeh csugrad 0 2018-02-16 20:35:48.285264000 -0800 now
+
+touch fails to change the date correctly, which means our 'oldest' file (the one
+meant to be labeled with the year '1918' is instead labeled with 2054.  The earliest
+possible year touch can set the file appears to be 1970, and ls -lt
+performs correctly with that.  

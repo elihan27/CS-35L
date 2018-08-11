@@ -1,0 +1,6 @@
+#!/bin/bash
+#Elizabeth Han
+#004815046
+#buildwords
+
+grep "<td>.*</td>" | sed ' /<td><\/td>/d' | sed -n "2~2 p" | sed 's/<td>//g'| sed 's/<\/td>//g' | cut -c 5- | tr [A-Z] [a-z] | sed 's/<u>//g' | sed 's/<\/u>//g' | sed "s/\`/\'/g" | tr -s ' ,' '[\n*]' | grep "^[pk'mnwlhaeiou]*$" |sort | uniq

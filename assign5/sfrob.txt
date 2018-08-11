@@ -1,0 +1,71 @@
+Elizabeth Han
+004815046
+sfrob.txt
+
+
+We compare the differences between sfrob, sfrobu, sfrobs, sfrobu -f, and 
+sfrobs -f, first using input.txt, which is one line.
+
+
+$ time ./sfrob < input.txt
+	real	0m0.002s
+	user	0m0.000s
+	sys	0m0.002s
+
+$ time ./sfrobu < input.txt
+	real	0m0.002s
+	user	0m0.000s
+	sys	0m0.001s
+
+$ time ./sfrobs < input.txt
+	real	0m0.013s
+	user	0m0.003s
+	sys	0m0.005s
+
+$ time ./sfrobu -f < input.txt
+	real	0m0.002s
+	user	0m0.001s
+	sys	0m0.000s
+
+$ time ./sfrobs -f < input.txt
+	real	0m0.010s
+	user	0m0.005s
+	sys	0m0.005s
+
+We can notice slightly more significant differences when using 100.txt - that is, an 100 line text file.
+
+sfrob:
+	real	0m0.004s
+	user	0m0.000s
+	sys	0m0.002s
+
+sfrobu:
+	real	0m0.002s
+	user	0m0.000s
+	sys	0m0.001s
+
+sfrobs
+	real	0m0.015s
+	user	0m0.005s
+	sys	0m0.006s
+
+sfrobu -f
+	real	0m0.002s
+	user	0m0.000s
+	sys	0m0.002s
+
+
+sfrobs -f
+	real	0m0.006s
+	user	0m0.003s
+	sys	0m0.005s
+
+I assume that sfrob is supposed to be faster than sfrobu, since the results from the lab with tr2u and
+tr2b had tr2b be significantly faster, due to the fewer amount of system calls.  However, when I was  
+working on sfrobu, I rewrote the code since I thought the code looked messy.  This appears to have an 
+impact on its efficiency.
+
+sfrobu appears to beat out sfrobs, with or without the -f option.  This is most likely because sfrobs
+is written in bash, which is interpreted language, which tends to be slower than compiled programs
+because interpreted languages need to be 'interpreted' into machine instructions at runtime.
+

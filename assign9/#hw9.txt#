@@ -1,0 +1,98 @@
+Elizabeth Han
+004815046
+hw9.txt
+
+
+To checkout version 3.0 of Diffutils into a new branch named œôòüquoteœôòý:
+	$ git clone ~eggert/src/gnu/diffutils //clone another version of eggert's 
+		repository 
+	$ git checkout v3.0 -b quote
+
+
+To install my change into the new branch:
+	$ cp  ~/35L/assign9/lab/test02/diffutils/quote-3.0-patch.txt quote-3.0-patch.txt
+	$ patch -p1 < quote-3.0-patch.txt
+
+		patching file src/cmp.c
+		patching file src/diff.c
+		patching file src/diff3.c
+		patching file src/dir.c
+		patching file src/sdiff.c
+		patching file src/util.c
+
+To create a changelog entry:
+	Became familiar with add-change-log-entry-other-window (C-x 4 a).  After taking a 
+look at the provided example, I opened src/cmp.c and used (C-x 4 a) to write my ChangeLog 
+(see below), which was saved in the src directory.  I moved it back into the parent 
+directory with:
+	$ mv src/ChangeLog .
+ 
+	2018-03-15  Elizabeth Erika Han  <elihan@g.ucla.edu>
+
+        * cmp.c: Replaced grave accents with apostrophe marks in
+        character string constants outside of comments.
+        * src/diff.c: Likewise.
+        * src/diff3.c: Likewise.
+        * src/dir.c: Likewise.
+        * src/sdiff.c: Likewise.
+        * src/util.c: Likewise.
+
+To commit changes to the new branch:
+	$ git add .
+	$ git commit -F ChangeLog
+	I found that the email wasn't quite correct, because I wasn't paying enough 
+		attention, so I edited it with:
+		$ git config --global --edit
+		$ git commit --amend --reset-author //for editing the commit author
+	$ git format-patch master // to create the patch
+	$ mv 0001-2018-03-15-Elizabeth-Erika-Han-elihan-g.ucla.edu.patch formatted-
+		patch.txt //obtain patch
+	
+My partner was Royson Lin.  
+We sent each other patches our patches like so:
+	$ scp elizabeh@lnxsrv09.seas.ucla.edu:~/35L/assign9/hw/test00/diffutils/formatted-
+		patch.txt classroy@lnxsrv09.seas.ucla.edu:~
+
+To checkout version 3.0 into a new temporary branch:
+	$ git checkout v3.0 -b partner
+
+Apply patch with: 
+	$ git am formatted-patch.txt
+
+Procedure then follows similarly to the one in the lab:
+	Modify Makefile.am file, change file permissions, run ./bootstrap, apply the 
+		provided patch from the website, configure, make and make check.
+	$ emacs tests/Makefile.am 
+	$ chmod +x tests/binary tests/no-newline-at-eof
+	$ ./bootstrap
+	$ wget https://web.cs.ucla.edu/classes/winter18/cs35L/assign/diffutils-gets.diff
+	$ patch -p0 < diffutils-gets.diff
+	$ ./configure
+	$ make 
+	$ make check
+
+I and my parner verified that our ChangeLog entry works, by running the command œôòümake 
+distdirœôòý and inspecting the resulting diffutils*/ChangeLog file.
+	In my case, this file was directdiffutils-3.0.1-f29d-dirty/ChangeLog, and it had 
+my partner's ChangeLog entry at the top of the file:
+
+2018-03-15 Royson Lin <classroy@lnxsrv09.seas.ucla.edu>
+                * src/cmp.c: Replaced ' with ` in non-character string constant\
+s.
+                * diff.c: Replaced ' with ` in non-character string constants.
+                * diff3.c: Replaced ' with ` in non-character string constants.
+                * dir.c: Replaced ' with ` in non-character string constants.
+                * sdiff.c: Replaced ' with ` in non-character string constants.
+                * util.c: Replaced ' with ` in non-character string constants.
+	
+Royson also had my entry at the top of his own ChangeLog file, so in both cases, the patch 
+was successful.
+
+gitk:
+	First: download XQuartz
+	Then: $ ssh -X elizabeh@lnxsrv09.seas.ucla.edu // the important thing is -X
+	Then: $ gitk ~eggert/src/gnu/emacs 
+	
+	The graphical interface popped up at this point.
+
+

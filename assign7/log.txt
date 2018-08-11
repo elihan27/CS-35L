@@ -1,0 +1,117 @@
+Elizabeth Han
+004815046
+log.txt
+
+To first set up the BeagleBone, I created a personal hotspot, connected my
+ laptop to the BeagleBone, and scanned for an Access Point named 
+BeagleBoneXXXXXX (in my case, BeagleBone62844), then connected my BeagleBone
+ to the hotspot.
+
+I then sshed into the BeagleBone with:
+	$ ssh root@192.168.8.1
+From there, I set up the password for the root user with:
+	# sudo passwd root
+	Result:
+		Enter new UNIX password: 
+		Retype new UNIX password: 
+		passwd: password updated successfully
+
+I then installed xauth and xterm by typing:
+	# apt-get update
+	# apt-get install xauth
+	# apt-get install xterm
+	
+I set up my hostname with:
+	# hostname elizabeth
+
+Then I connected to my partner's hotspot, and sshed into my partner's board
+with:
+	# ssh root@192.168.43.138
+the numbers being my partner's IP address.  I gave my parter the my own IP 
+address by using 
+	# ifconfig
+		(my IP address was inet addr:192.168.43.224)
+
+This worked fine, so I logged out of my partner's board ($ exit), and then 
+created a non-root user account.
+	# useradd foo
+	# passwd foo
+		Enter new UNIX password: 
+		Retype new UNIX password: 
+		passwd: password updated successfully
+
+I also created a home directory for this account.
+	# mkdir /home/foo
+	# chown foo /home/foo (to change owner of the directory)
+
+I sshed into my partner's board with:
+	# ssh tanusi@192.168.43.138
+while she sshed into mine with:
+	# ssh foo@192.168.43.224 	
+
+I exited back into my board, and then generated a keypair with
+	# ssh-keygen
+	Result:
+		Generating public/private rsa key pair.
+		Enter file in which to save the key (/root/.ssh/id_rsa): 
+		Enter passphrase (empty for no passphrase): 
+		Enter same passphrase again: 
+		Your identification has been saved in /root/.ssh/id_rsa.
+		Your public key has been saved in /root/.ssh/id_rsa.pub.
+		The key fingerprint is:
+		65:fc:84:d3:68:86:97:ff:ed:f3:22:7d:ec:e9:b6:d5 
+			root@704579512.lasr.cs.ucla.edu
+		The key's randomart image is:
+		+---[RSA 2048]----+
+		|                 |
+		|         o =     |
+		|        . % o    |
+		|         * =     |
+		|        S   o    |
+		|             . ..|
+		|             ...E|
+		|            . o+=|
+		|             .oBB|
+		+-----------------+
+
+I then sshed into my guest account on my partner's BeagleBone: 
+	$ ssh tanusi@192.168.43.138
+	$ eval `ssh-agent` (to create ssh-agent)       
+		Agent pid 6301
+	$ exit
+
+Back on my account:
+	# ssh-copy-id tanusi@192.168.43.138 (copied my public key into remote
+		server
+		/usr/bin/ssh-copy-id: INFO: attempting to log in with the new 
+		key(s), to filter out any that are already installed
+		/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- 
+		if you are prompted now it is to install the new keys
+		Debian GNU/Linux 8
+
+	
+	Number of key(s) added: 1
+
+	Now try logging into the machine, with:  
+	 "ssh 'tanusi@192.168.43.138'"
+	and check to make sure that only the key(s) you wanted were added.
+ 
+ 	# eval `ssh-agent` 
+		Agent pid 3348
+	# ssh-add
+		Identity added: /root/.ssh/id_rsa (rsa w/o comment)
+		root@704579512:~# ssh tanusi@192.168.43.138
+
+When I tried logging into the guest account (w/ # ssh tanusi@192.168.43.138), 
+I was let in without a password.
+
+I then exited out of my terminals and opened a new one, trying:
+	$ ssh -X root@192.168.8.1
+And then:
+	# ssh -X tanusi@192.168.43.138
+When I typed 
+	$ xterm
+a graphical interface popped up.
+
+
+

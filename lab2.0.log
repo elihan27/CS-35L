@@ -1,0 +1,104 @@
+Elizabeth Han
+004815046	
+lab2.log
+
+
+
+	$ locale  
+
+LC_CTYPE="en_US.UTF-8", so 
+ 	$ export LC_ALL='C'
+
+
+sort /usr/share/dict/words >  words
+	> create words file
+
+wget https://web.cs.ucla.edu/classes/winter18/cs35L/assign/assign2.html
+	>create assign2 file
+
+
+01. tr -c 'A-Za-z' '[\n*]' < words 
+	tr -c 'A-Za-z' '[\n*]' < words |diff -u words - > words01.diff 
+	replace every non-alphabetical character w/ a new line character
+
+02. tr -cs 'A-Za-z' '[\n*]' < words
+	 -s, --squeeze-repeats
+         replace each sequence of a repeated character that is listed in the last specified SET, with a single occurrence of that character
+	 simply removes every non-alphabetical character.  More specifically, it places a newline character for each non-alphebetical character, then removes the newlines if there 		are repeated occurences
+
+03. tr -cs 'A-Za-z' '[\n*]' < words | sort > words03
+	removes each non-alphabetical character and sorts what's left	
+04. tr -cs 'A-Za-z' '[\n*]' < words | sort -u > words04
+	appears to remove non-alphabetical characters, sorts it, then removes repeated occurrences of a word
+05. tr -cs 'A-Za-z' '[\n*]' < words | sort -u | comm - words > words05
+	appears to remove non-alphabetical characters, sorts it, then removes repeated occurrences of a word, and then compares this line by line with the original file
+06. tr -cs 'A-Za-z' '[\n*]' < words | sort -u | comm -23 - words > words06
+	appears to remove non-alphabetical characters, sorts it, then removes repeated occurrences of a word, and then compares this line by line with the original file
+	
+
+ With no options, produce three-column output.  Column one contains lines unique to FILE1, column two contains lines unique to FILE2, and column three contains lines com‐
+       mon to both files.
+
+       -1     suppress column 1 (lines unique to FILE1)
+
+       -2     suppress column 2 (lines unique to FILE2)
+
+       -3     suppress column 3 (lines that appear in both files)
+
+But then removes the second and third column, so you only have the words that show up after the file's been sorted.
+
+
+wget http://mauimapp.com/moolelo/hwnwdseng.htm
+
+emacs hwnwdseng.htm
+
+mv hwnwdseng.htm hw.html
+
+
+Things to do:
+- convert everything to lowercase
+- remove any words that contain letters not using p k ' m n w l h a e i o u
+
+
+
+
+<tr> <td>Eword</td> <td>Hword</td>
+
+
+sed -n '/<tr>\n<td>^.*$<t\/d>\n<td>^.*$<t\/d>/p' hw.html> hw01.html
+
+
+sed -n '/<tr>/p' hw.html > hw01.html
+
+sed -n '/hello\n/p' tester > hw01.html
+
+sed -n '/<tr>.*<\/td>/p' hw.html> hw01.html
+
+
+
+sed -n ' /<tr>.*<\/td>/p' hw.html > hw01.html
+
+grep "<tr>.*<\/td>" hw.html > hw01.html
+
+grep "<tr>" hw.html > hw01.html
+grep tr hw.html > hw01.html
+
+grep \<tr\>.*\</td\> hw.html < hw00.html 
+
+grep <td>.*</td>
+
+ grep "<td>.*</td>" hw.html
+
+sed -n ' /<tr>.*</td>/p' hw.html
+
+
+export LC_ALL='C'
+
+
+
+
+
+
+
+
+

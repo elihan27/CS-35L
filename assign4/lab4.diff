@@ -1,0 +1,20 @@
+2018-02-15  Elizabeth Erika Han  <elizabeh@lnxsrv07.seas.ucla.edu>
+
+        * timespec.h (timespec_cmp): 
+--- timespec.h	2018-02-15 18:24:01.455854000 -0800
++++ coreutils-with-bug/lib/timespec.h	2018-02-15 19:00:13.573082000 -0800
+@@ -45,8 +45,12 @@
+ static inline int
+ timespec_cmp (struct timespec a, struct timespec b)
+ {
+-  int diff = a.tv_sec - b.tv_sec;
+-  return diff ? diff : a.tv_nsec - b.tv_nsec;
++  if (a.tv_sec > b.tv_sec)
++    return 1;
++  else if (a.tv_sec < b.tv_sec)
++    return -1;
++  else return 0;
++
+ }
+ 
+ # if ! HAVE_DECL_NANOSLEEP

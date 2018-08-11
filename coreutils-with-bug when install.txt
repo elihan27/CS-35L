@@ -1,0 +1,206 @@
+What happens when you try to installll:
+
+
+
+
+[elizabeh@lnxsrv07 ~/35L/assign4/tempdir/coreutils-with-bug]$ make install
+Making install in lib
+make[1]: Entering directory '/w/home.14/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils-with-bug/lib'
+cp ./alloca_.h alloca.h-t
+mv alloca.h-t alloca.h
+make  install-am
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils-with-bug/lib'
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT allocsa.o -MD -MP -MF ".deps/allocsa.Tpo" -c -o allocsa.o allocsa.c; \
+then mv -f ".deps/allocsa.Tpo" ".deps/allocsa.Po"; else rm -f ".deps/allocsa.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT fprintftime.o -MD -MP -MF ".deps/fprintftime.Tpo" -c -o fprintftime.o fprintftime.c; \
+then mv -f ".deps/fprintftime.Tpo" ".deps/fprintftime.Po"; else rm -f ".deps/fprintftime.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT full-read.o -MD -MP -MF ".deps/full-read.Tpo" -c -o full-read.o full-read.c; \
+then mv -f ".deps/full-read.Tpo" ".deps/full-read.Po"; else rm -f ".deps/full-read.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT full-write.o -MD -MP -MF ".deps/full-write.Tpo" -c -o full-write.o full-write.c; \
+then mv -f ".deps/full-write.Tpo" ".deps/full-write.Po"; else rm -f ".deps/full-write.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT localcharset.o -MD -MP -MF ".deps/localcharset.Tpo" -c -o localcharset.o localcharset.c; \
+then mv -f ".deps/localcharset.Tpo" ".deps/localcharset.Po"; else rm -f ".deps/localcharset.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT mbswidth.o -MD -MP -MF ".deps/mbswidth.Tpo" -c -o mbswidth.o mbswidth.c; \
+then mv -f ".deps/mbswidth.Tpo" ".deps/mbswidth.Po"; else rm -f ".deps/mbswidth.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT readtokens0.o -MD -MP -MF ".deps/readtokens0.Tpo" -c -o readtokens0.o readtokens0.c; \
+then mv -f ".deps/readtokens0.Tpo" ".deps/readtokens0.Po"; else rm -f ".deps/readtokens0.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT strnlen1.o -MD -MP -MF ".deps/strnlen1.Tpo" -c -o strnlen1.o strnlen1.c; \
+then mv -f ".deps/strnlen1.Tpo" ".deps/strnlen1.Po"; else rm -f ".deps/strnlen1.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT time_r.o -MD -MP -MF ".deps/time_r.Tpo" -c -o time_r.o time_r.c; \
+then mv -f ".deps/time_r.Tpo" ".deps/time_r.Po"; else rm -f ".deps/time_r.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT unicodeio.o -MD -MP -MF ".deps/unicodeio.Tpo" -c -o unicodeio.o unicodeio.c; \
+then mv -f ".deps/unicodeio.Tpo" ".deps/unicodeio.Po"; else rm -f ".deps/unicodeio.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT xalloc-die.o -MD -MP -MF ".deps/xalloc-die.Tpo" -c -o xalloc-die.o xalloc-die.c; \
+then mv -f ".deps/xalloc-die.Tpo" ".deps/xalloc-die.Po"; else rm -f ".deps/xalloc-die.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT xgethostname.o -MD -MP -MF ".deps/xgethostname.Tpo" -c -o xgethostname.o xgethostname.c; \
+then mv -f ".deps/xgethostname.Tpo" ".deps/xgethostname.Po"; else rm -f ".deps/xgethostname.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT xmemcoll.o -MD -MP -MF ".deps/xmemcoll.Tpo" -c -o xmemcoll.o xmemcoll.c; \
+then mv -f ".deps/xmemcoll.Tpo" ".deps/xmemcoll.Po"; else rm -f ".deps/xmemcoll.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT xstrndup.o -MD -MP -MF ".deps/xstrndup.Tpo" -c -o xstrndup.o xstrndup.c; \
+then mv -f ".deps/xstrndup.Tpo" ".deps/xstrndup.Po"; else rm -f ".deps/xstrndup.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT xstrtoimax.o -MD -MP -MF ".deps/xstrtoimax.Tpo" -c -o xstrtoimax.o xstrtoimax.c; \
+then mv -f ".deps/xstrtoimax.Tpo" ".deps/xstrtoimax.Po"; else rm -f ".deps/xstrtoimax.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT xstrtoumax.o -MD -MP -MF ".deps/xstrtoumax.Tpo" -c -o xstrtoumax.o xstrtoumax.c; \
+then mv -f ".deps/xstrtoumax.Tpo" ".deps/xstrtoumax.Po"; else rm -f ".deps/xstrtoumax.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT backupfile.o -MD -MP -MF ".deps/backupfile.Tpo" -c -o backupfile.o backupfile.c; \
+then mv -f ".deps/backupfile.Tpo" ".deps/backupfile.Po"; else rm -f ".deps/backupfile.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT basename.o -MD -MP -MF ".deps/basename.Tpo" -c -o basename.o basename.c; \
+then mv -f ".deps/basename.Tpo" ".deps/basename.Po"; else rm -f ".deps/basename.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT c-strtod.o -MD -MP -MF ".deps/c-strtod.Tpo" -c -o c-strtod.o c-strtod.c; \
+then mv -f ".deps/c-strtod.Tpo" ".deps/c-strtod.Po"; else rm -f ".deps/c-strtod.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT c-strtold.o -MD -MP -MF ".deps/c-strtold.Tpo" -c -o c-strtold.o c-strtold.c; \
+then mv -f ".deps/c-strtold.Tpo" ".deps/c-strtold.Po"; else rm -f ".deps/c-strtold.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT canon-host.o -MD -MP -MF ".deps/canon-host.Tpo" -c -o canon-host.o canon-host.c; \
+then mv -f ".deps/canon-host.Tpo" ".deps/canon-host.Po"; else rm -f ".deps/canon-host.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT cloexec.o -MD -MP -MF ".deps/cloexec.Tpo" -c -o cloexec.o cloexec.c; \
+then mv -f ".deps/cloexec.Tpo" ".deps/cloexec.Po"; else rm -f ".deps/cloexec.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT closeout.o -MD -MP -MF ".deps/closeout.Tpo" -c -o closeout.o closeout.c; \
+then mv -f ".deps/closeout.Tpo" ".deps/closeout.Po"; else rm -f ".deps/closeout.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT dirname.o -MD -MP -MF ".deps/dirname.Tpo" -c -o dirname.o dirname.c; \
+then mv -f ".deps/dirname.Tpo" ".deps/dirname.Po"; else rm -f ".deps/dirname.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT exclude.o -MD -MP -MF ".deps/exclude.Tpo" -c -o exclude.o exclude.c; \
+then mv -f ".deps/exclude.Tpo" ".deps/exclude.Po"; else rm -f ".deps/exclude.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT exitfail.o -MD -MP -MF ".deps/exitfail.Tpo" -c -o exitfail.o exitfail.c; \
+then mv -f ".deps/exitfail.Tpo" ".deps/exitfail.Po"; else rm -f ".deps/exitfail.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT open-safer.o -MD -MP -MF ".deps/open-safer.Tpo" -c -o open-safer.o open-safer.c; \
+then mv -f ".deps/open-safer.Tpo" ".deps/open-safer.Po"; else rm -f ".deps/open-safer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT creat-safer.o -MD -MP -MF ".deps/creat-safer.Tpo" -c -o creat-safer.o creat-safer.c; \
+then mv -f ".deps/creat-safer.Tpo" ".deps/creat-safer.Po"; else rm -f ".deps/creat-safer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT fd-reopen.o -MD -MP -MF ".deps/fd-reopen.Tpo" -c -o fd-reopen.o fd-reopen.c; \
+then mv -f ".deps/fd-reopen.Tpo" ".deps/fd-reopen.Po"; else rm -f ".deps/fd-reopen.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT filemode.o -MD -MP -MF ".deps/filemode.Tpo" -c -o filemode.o filemode.c; \
+then mv -f ".deps/filemode.Tpo" ".deps/filemode.Po"; else rm -f ".deps/filemode.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT filenamecat.o -MD -MP -MF ".deps/filenamecat.Tpo" -c -o filenamecat.o filenamecat.c; \
+then mv -f ".deps/filenamecat.Tpo" ".deps/filenamecat.Po"; else rm -f ".deps/filenamecat.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT file-type.o -MD -MP -MF ".deps/file-type.Tpo" -c -o file-type.o file-type.c; \
+then mv -f ".deps/file-type.Tpo" ".deps/file-type.Po"; else rm -f ".deps/file-type.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT fsusage.o -MD -MP -MF ".deps/fsusage.Tpo" -c -o fsusage.o fsusage.c; \
+then mv -f ".deps/fsusage.Tpo" ".deps/fsusage.Po"; else rm -f ".deps/fsusage.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT getpass.o -MD -MP -MF ".deps/getpass.Tpo" -c -o getpass.o getpass.c; \
+then mv -f ".deps/getpass.Tpo" ".deps/getpass.Po"; else rm -f ".deps/getpass.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT mktime.o -MD -MP -MF ".deps/mktime.Tpo" -c -o mktime.o mktime.c; \
+then mv -f ".deps/mktime.Tpo" ".deps/mktime.Po"; else rm -f ".deps/mktime.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT sig2str.o -MD -MP -MF ".deps/sig2str.Tpo" -c -o sig2str.o sig2str.c; \
+then mv -f ".deps/sig2str.Tpo" ".deps/sig2str.Po"; else rm -f ".deps/sig2str.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT strstr.o -MD -MP -MF ".deps/strstr.Tpo" -c -o strstr.o strstr.c; \
+then mv -f ".deps/strstr.Tpo" ".deps/strstr.Po"; else rm -f ".deps/strstr.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT vasnprintf.o -MD -MP -MF ".deps/vasnprintf.Tpo" -c -o vasnprintf.o vasnprintf.c; \
+then mv -f ".deps/vasnprintf.Tpo" ".deps/vasnprintf.Po"; else rm -f ".deps/vasnprintf.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT printf-args.o -MD -MP -MF ".deps/printf-args.Tpo" -c -o printf-args.o printf-args.c; \
+then mv -f ".deps/printf-args.Tpo" ".deps/printf-args.Po"; else rm -f ".deps/printf-args.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT printf-parse.o -MD -MP -MF ".deps/printf-parse.Tpo" -c -o printf-parse.o printf-parse.c; \
+then mv -f ".deps/printf-parse.Tpo" ".deps/printf-parse.Po"; else rm -f ".deps/printf-parse.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT asnprintf.o -MD -MP -MF ".deps/asnprintf.Tpo" -c -o asnprintf.o asnprintf.c; \
+then mv -f ".deps/asnprintf.Tpo" ".deps/asnprintf.Po"; else rm -f ".deps/asnprintf.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT getdate.o -MD -MP -MF ".deps/getdate.Tpo" -c -o getdate.o getdate.c; \
+then mv -f ".deps/getdate.Tpo" ".deps/getdate.Po"; else rm -f ".deps/getdate.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT gethrxtime.o -MD -MP -MF ".deps/gethrxtime.Tpo" -c -o gethrxtime.o gethrxtime.c; \
+then mv -f ".deps/gethrxtime.Tpo" ".deps/gethrxtime.Po"; else rm -f ".deps/gethrxtime.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT getndelim2.o -MD -MP -MF ".deps/getndelim2.Tpo" -c -o getndelim2.o getndelim2.c; \
+then mv -f ".deps/getndelim2.Tpo" ".deps/getndelim2.Po"; else rm -f ".deps/getndelim2.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT gettime.o -MD -MP -MF ".deps/gettime.Tpo" -c -o gettime.o gettime.c; \
+then mv -f ".deps/gettime.Tpo" ".deps/gettime.Po"; else rm -f ".deps/gettime.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT getugroups.o -MD -MP -MF ".deps/getugroups.Tpo" -c -o getugroups.o getugroups.c; \
+then mv -f ".deps/getugroups.Tpo" ".deps/getugroups.Po"; else rm -f ".deps/getugroups.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT hard-locale.o -MD -MP -MF ".deps/hard-locale.Tpo" -c -o hard-locale.o hard-locale.c; \
+then mv -f ".deps/hard-locale.Tpo" ".deps/hard-locale.Po"; else rm -f ".deps/hard-locale.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT hash.o -MD -MP -MF ".deps/hash.Tpo" -c -o hash.o hash.c; \
+then mv -f ".deps/hash.Tpo" ".deps/hash.Po"; else rm -f ".deps/hash.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT hash-pjw.o -MD -MP -MF ".deps/hash-pjw.Tpo" -c -o hash-pjw.o hash-pjw.c; \
+then mv -f ".deps/hash-pjw.Tpo" ".deps/hash-pjw.Po"; else rm -f ".deps/hash-pjw.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT human.o -MD -MP -MF ".deps/human.Tpo" -c -o human.o human.c; \
+then mv -f ".deps/human.Tpo" ".deps/human.Po"; else rm -f ".deps/human.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT idcache.o -MD -MP -MF ".deps/idcache.Tpo" -c -o idcache.o idcache.c; \
+then mv -f ".deps/idcache.Tpo" ".deps/idcache.Po"; else rm -f ".deps/idcache.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT imaxtostr.o -MD -MP -MF ".deps/imaxtostr.Tpo" -c -o imaxtostr.o imaxtostr.c; \
+then mv -f ".deps/imaxtostr.Tpo" ".deps/imaxtostr.Po"; else rm -f ".deps/imaxtostr.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT offtostr.o -MD -MP -MF ".deps/offtostr.Tpo" -c -o offtostr.o offtostr.c; \
+then mv -f ".deps/offtostr.Tpo" ".deps/offtostr.Po"; else rm -f ".deps/offtostr.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT umaxtostr.o -MD -MP -MF ".deps/umaxtostr.Tpo" -c -o umaxtostr.o umaxtostr.c; \
+then mv -f ".deps/umaxtostr.Tpo" ".deps/umaxtostr.Po"; else rm -f ".deps/umaxtostr.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT linebuffer.o -MD -MP -MF ".deps/linebuffer.Tpo" -c -o linebuffer.o linebuffer.c; \
+then mv -f ".deps/linebuffer.Tpo" ".deps/linebuffer.Po"; else rm -f ".deps/linebuffer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT long-options.o -MD -MP -MF ".deps/long-options.Tpo" -c -o long-options.o long-options.c; \
+then mv -f ".deps/long-options.Tpo" ".deps/long-options.Po"; else rm -f ".deps/long-options.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT mbchar.o -MD -MP -MF ".deps/mbchar.Tpo" -c -o mbchar.o mbchar.c; \
+then mv -f ".deps/mbchar.Tpo" ".deps/mbchar.Po"; else rm -f ".deps/mbchar.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT md5.o -MD -MP -MF ".deps/md5.Tpo" -c -o md5.o md5.c; \
+then mv -f ".deps/md5.Tpo" ".deps/md5.Po"; else rm -f ".deps/md5.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT memcoll.o -MD -MP -MF ".deps/memcoll.Tpo" -c -o memcoll.o memcoll.c; \
+then mv -f ".deps/memcoll.Tpo" ".deps/memcoll.Po"; else rm -f ".deps/memcoll.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT mkdir-p.o -MD -MP -MF ".deps/mkdir-p.Tpo" -c -o mkdir-p.o mkdir-p.c; \
+then mv -f ".deps/mkdir-p.Tpo" ".deps/mkdir-p.Po"; else rm -f ".deps/mkdir-p.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT modechange.o -MD -MP -MF ".deps/modechange.Tpo" -c -o modechange.o modechange.c; \
+then mv -f ".deps/modechange.Tpo" ".deps/modechange.Po"; else rm -f ".deps/modechange.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT mountlist.o -MD -MP -MF ".deps/mountlist.Tpo" -c -o mountlist.o mountlist.c; \
+then mv -f ".deps/mountlist.Tpo" ".deps/mountlist.Po"; else rm -f ".deps/mountlist.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT physmem.o -MD -MP -MF ".deps/physmem.Tpo" -c -o physmem.o physmem.c; \
+then mv -f ".deps/physmem.Tpo" ".deps/physmem.Po"; else rm -f ".deps/physmem.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT posixtm.o -MD -MP -MF ".deps/posixtm.Tpo" -c -o posixtm.o posixtm.c; \
+then mv -f ".deps/posixtm.Tpo" ".deps/posixtm.Po"; else rm -f ".deps/posixtm.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT posixver.o -MD -MP -MF ".deps/posixver.Tpo" -c -o posixver.o posixver.c; \
+then mv -f ".deps/posixver.Tpo" ".deps/posixver.Po"; else rm -f ".deps/posixver.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT quotearg.o -MD -MP -MF ".deps/quotearg.Tpo" -c -o quotearg.o quotearg.c; \
+then mv -f ".deps/quotearg.Tpo" ".deps/quotearg.Po"; else rm -f ".deps/quotearg.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT quote.o -MD -MP -MF ".deps/quote.Tpo" -c -o quote.o quote.c; \
+then mv -f ".deps/quote.Tpo" ".deps/quote.Po"; else rm -f ".deps/quote.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT readtokens.o -MD -MP -MF ".deps/readtokens.Tpo" -c -o readtokens.o readtokens.c; \
+then mv -f ".deps/readtokens.Tpo" ".deps/readtokens.Po"; else rm -f ".deps/readtokens.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT readutmp.o -MD -MP -MF ".deps/readutmp.Tpo" -c -o readutmp.o readutmp.c; \
+then mv -f ".deps/readutmp.Tpo" ".deps/readutmp.Po"; else rm -f ".deps/readutmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT regex.o -MD -MP -MF ".deps/regex.Tpo" -c -o regex.o regex.c; \
+then mv -f ".deps/regex.Tpo" ".deps/regex.Po"; else rm -f ".deps/regex.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT safe-read.o -MD -MP -MF ".deps/safe-read.Tpo" -c -o safe-read.o safe-read.c; \
+then mv -f ".deps/safe-read.Tpo" ".deps/safe-read.Po"; else rm -f ".deps/safe-read.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT safe-write.o -MD -MP -MF ".deps/safe-write.Tpo" -c -o safe-write.o safe-write.c; \
+then mv -f ".deps/safe-write.Tpo" ".deps/safe-write.Po"; else rm -f ".deps/safe-write.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT same.o -MD -MP -MF ".deps/same.Tpo" -c -o same.o same.c; \
+then mv -f ".deps/same.Tpo" ".deps/same.Po"; else rm -f ".deps/same.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT savedir.o -MD -MP -MF ".deps/savedir.Tpo" -c -o savedir.o savedir.c; \
+then mv -f ".deps/savedir.Tpo" ".deps/savedir.Po"; else rm -f ".deps/savedir.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT save-cwd.o -MD -MP -MF ".deps/save-cwd.Tpo" -c -o save-cwd.o save-cwd.c; \
+then mv -f ".deps/save-cwd.Tpo" ".deps/save-cwd.Po"; else rm -f ".deps/save-cwd.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT settime.o -MD -MP -MF ".deps/settime.Tpo" -c -o settime.o settime.c; \
+then mv -f ".deps/settime.Tpo" ".deps/settime.Po"; else rm -f ".deps/settime.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT sha1.o -MD -MP -MF ".deps/sha1.Tpo" -c -o sha1.o sha1.c; \
+then mv -f ".deps/sha1.Tpo" ".deps/sha1.Po"; else rm -f ".deps/sha1.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT fopen-safer.o -MD -MP -MF ".deps/fopen-safer.Tpo" -c -o fopen-safer.o fopen-safer.c; \
+then mv -f ".deps/fopen-safer.Tpo" ".deps/fopen-safer.Po"; else rm -f ".deps/fopen-safer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT mkstemp-safer.o -MD -MP -MF ".deps/mkstemp-safer.Tpo" -c -o mkstemp-safer.o mkstemp-safer.c; \
+then mv -f ".deps/mkstemp-safer.Tpo" ".deps/mkstemp-safer.Po"; else rm -f ".deps/mkstemp-safer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT strcasecmp.o -MD -MP -MF ".deps/strcasecmp.Tpo" -c -o strcasecmp.o strcasecmp.c; \
+then mv -f ".deps/strcasecmp.Tpo" ".deps/strcasecmp.Po"; else rm -f ".deps/strcasecmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT strintcmp.o -MD -MP -MF ".deps/strintcmp.Tpo" -c -o strintcmp.o strintcmp.c; \
+then mv -f ".deps/strintcmp.Tpo" ".deps/strintcmp.Po"; else rm -f ".deps/strintcmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT strnumcmp.o -MD -MP -MF ".deps/strnumcmp.Tpo" -c -o strnumcmp.o strnumcmp.c; \
+then mv -f ".deps/strnumcmp.Tpo" ".deps/strnumcmp.Po"; else rm -f ".deps/strnumcmp.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT stripslash.o -MD -MP -MF ".deps/stripslash.Tpo" -c -o stripslash.o stripslash.c; \
+then mv -f ".deps/stripslash.Tpo" ".deps/stripslash.Po"; else rm -f ".deps/stripslash.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT dup-safer.o -MD -MP -MF ".deps/dup-safer.Tpo" -c -o dup-safer.o dup-safer.c; \
+then mv -f ".deps/dup-safer.Tpo" ".deps/dup-safer.Po"; else rm -f ".deps/dup-safer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT fd-safer.o -MD -MP -MF ".deps/fd-safer.Tpo" -c -o fd-safer.o fd-safer.c; \
+then mv -f ".deps/fd-safer.Tpo" ".deps/fd-safer.Po"; else rm -f ".deps/fd-safer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT pipe-safer.o -MD -MP -MF ".deps/pipe-safer.Tpo" -c -o pipe-safer.o pipe-safer.c; \
+then mv -f ".deps/pipe-safer.Tpo" ".deps/pipe-safer.Po"; else rm -f ".deps/pipe-safer.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT unlinkdir.o -MD -MP -MF ".deps/unlinkdir.Tpo" -c -o unlinkdir.o unlinkdir.c; \
+then mv -f ".deps/unlinkdir.Tpo" ".deps/unlinkdir.Po"; else rm -f ".deps/unlinkdir.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT userspec.o -MD -MP -MF ".deps/userspec.Tpo" -c -o userspec.o userspec.c; \
+then mv -f ".deps/userspec.Tpo" ".deps/userspec.Po"; else rm -f ".deps/userspec.Tpo"; exit 1; fi
+if gcc -DHAVE_CONFIG_H -DLIBDIR=\"/u/cs/ugrad/elizabeh/35L/assign4/tempdir/lib\" -I. -I. -I..  -I.. -I.   -g -O2 -MT utimecmp.o -MD -MP -MF ".deps/utimecmp.Tpo" -c -o utimecmp.o utimecmp.c; \
+then mv -f ".deps/utimecmp.Tpo" ".deps/utimecmp.Po"; else rm -f ".deps/utimecmp.Tpo"; exit 1; fi
+In file included from utimecmp.c:41:0:
+utimens.h:2:5: error: conflicting types for 'futimens'
+ int futimens (int, char const *, struct timespec const [2]);
+     ^~~~~~~~
+In file included from utimecmp.h:25:0,
+                 from utimecmp.c:25:
+/usr/include/sys/stat.h:373:12: note: previous declaration of 'futimens' was here
+ extern int futimens (int __fd, const struct timespec __times[2]) __THROW;
+            ^~~~~~~~
+make[2]: *** [Makefile:659: utimecmp.o] Error 1
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils-with-bug/lib'
+make[1]: *** [Makefile:775: install] Error 2
+make[1]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils-with-bug/lib'
+make: *** [Makefile:419: install-recursive] Error 1
+[elizabeh@lnxsrv07 ~/35L/assign4/tempdir/coreutils-with-bug]$ 
+

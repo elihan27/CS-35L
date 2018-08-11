@@ -1,0 +1,18 @@
+Elizabeth Han
+004815046
+gitk-description.txt
+
+The interface can be roughly divided into two main windows: 
+	I) Top: Metadata, split into three subwindows.
+		1) Left: appears to a commit tree - a visualization of the project history, showing all the branches.
+		2) Center: lists the author/creator of each change/branch/merge
+		3) Right: shows the modification date of each change/branch/merge
+	II) Bottom: actual content
+		1) Left: the contents of the change itself
+			a) Top: similar to I, containing info such as the auther, what 
+				tree is its parent/child, its branches, its order, etc.
+			b) Bottom: the files.  Options for viewing the old version/new 
+				version of the file, as will as a diff file.
+		2) Right: labeled as "Comments", but appears to be other files/trees 
+			involved with the change
+

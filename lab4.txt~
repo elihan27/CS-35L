@@ -1,0 +1,70 @@
+Elizabeth Han
+004815046
+lab4.txt
+
+Transfer to lnxsrver
+	$ scp coreutils-with-bug.tar elizabeh@lnxsrv07.seas.ucla.edu:~/35L
+
+Untar:
+	$ tar -xf coreutils-with-bug.tar 
+
+Created a temporary directory tempdir, then, to install the program from source code:
+
+	$ ./configure --prefix=/u/cs/ugrad/elizabeh/35L/assign4/tempdir
+	tell make install to move the binary into the 
+	/u/cs/ugrad/elizabeh/35L/assign4/ tempdir path instead of default linux position
+
+	$ make
+	compile source code to binary
+
+	$ make install
+	(I placed error in Untitled 11)
+
+Right, so clearly this didn't work.
+
+So you'd have to go into coreutils and edit in the utimenes...
+
+Download the patch:
+	$ wget https://web.cs.ucla.edu/classes/winter18/cs35L/assign/coreutils.diff
+Apply patch:
+	$ patch < coreutils.diff
+
+patch -p0 < /u/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils-with-bug/coreutils.diff
+
+
+export PATH=/u/cs/ugrad/elizabeh/35L/assign4/tempdir/coreutils-with-bug/src:$PATH
+	$ which ls
+	~/35L/assign4/tempdir/coreutils-with-bug/src/ls
+
+Actually attempting to use ls results in this:
+	ls: unrecognized prefix: rs
+	ls: unparsable value for LS_COLORS environment variable
+	coreutils-with-bug.tar  randomFile  tempdir
+
+touch -d
+
+ls -t sorts by modification time
+
+
+ls: unrecognized prefix: rs
+ls: unparsable value for LS_COLORS environment variable
+total 29520
+-rw-r--r-- 1 elizabeh csugrad      178 2018-02-07 16:28 randomFile
+drwxr-xr-x 5 elizabeh csugrad     4096 2018-02-07 11:47 tempdir
+-rw-r--r-- 1 elizabeh csugrad 30095360 2018-02-06 22:38 coreutils-with-bug.tar
+
+
+
+$ tmp=$(mktemp -d)
+$ cd $tmp
+$ ts
+$ touch now
+$ sleep 1
+$ touch now1
+$ TZ=UTC0 ls -lt --full-time wwi-armistice now now1
+
+
+
+-rw-r--r-- 1 elizabeh csugrad 0 1918-11-11 11:00:00.000000000 +0000 wwi-armistice
+-rw-r--r-- 1 elizabeh csugrad 0 2018-02-09 18:35:40.711058720 +0000 now1
+-rw-r--r-- 1 elizabeh csugrad 0 2018-02-09 18:35:31.692813386 +0000 now

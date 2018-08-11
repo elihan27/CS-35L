@@ -1,0 +1,40 @@
+Elizabeth Han
+004815046
+lab.txt
+
+
+After writing tr2u.c and tr2b.c, compile:
+	$ gcc -g -o tr2u tr2u.c
+	$ gcc -g -o tr2b tr2b.c
+
+Write a program that prints out 5000000 characters, compile and run to make a 
+file that is 5000000 bytes.
+	$ gcc -g -o million 5000000.c
+	$ ./million > 5million.txt
+
+Compare performance when tr is printed to a file
+	$ strace cat 5million.txt | ./tr2u a z > zu.txt
+	$ strace cat 5million.txt | ./tr2b a z > zb.txt
+
+Compare performance when tr is printed to terminal
+	$ strace cat 5million.txt | ./tr2u a z
+	$ strace cat 5million.txt | ./tr2b a z
+
+tr2u and tr2b had the same commands as each other when printed to terminal or 
+copied in the same file.  Both tr2u and tr2b when printed to terminal are
+quicker than tr2u and tr2b when copying to a file, and tr2b is always faster
+than tr2u.
+
+tr2u:
+	$ time cat 5million.txt | ./tr2u a z
+	real	0m8.580s
+	user	0m1.346s
+	sys	0m7.251s
+
+tr2b: 
+	$ time cat 5million.txt | ./tr2b a z
+	real	0m0.707s
+	user	0m0.138s
+	sys	0m0.057s
+	
+

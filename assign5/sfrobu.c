@@ -1,0 +1,238 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <ctype.h>
+
+
+
+int frobcmp(char const *a, char const *b)
+{ 
+  for (;;a++, b++)
+    {
+      char A = *a ^42;
+      char B = *b ^42;
+      if ( (*a==' ') && (*b==' ') )
+	return 0;
+      else if ((A < B) ||  *a== ' ')
+	return -1;
+      else if ((A > B) || *b== ' ')
+	return 1;
+
+    }
+  
+}
+
+int ffrobcmp(char const *a, char const *b)
+{
+  for (;;a++, b++)
+    {
+      char A = toupper(*a ^42);
+      char B = toupper(*b ^42);
+      if ( (*a==' ') && (*b==' ') )
+        return 0;
+      else if ((A < B) ||  *a== ' ')
+        return -1;
+      else if ((A > B) || *b== ' ')
+        return 1;
+
+    }
+
+}
+
+
+
+
+int wrapper(const void *a, const void *b)
+{
+  char const *A = *(char**) a;
+  char const *B = *(char**) b;
+
+  return frobcmp (A, B);
+  }
+
+int fwrapper(const void *a, const void *b)
+{
+  char const *A = *(char**) a;
+  char const *B = *(char**) b;
+
+  return ffrobcmp (A, B);
+  }
+
+void checkMem(void* ptr)
+{
+  if (ptr==NULL)
+    {
+      fprintf(stderr, "Memory Allocation Error: %d\n", errno);
+      exit(1);
+    }
+
+}
+
+void checkIO(FILE* ptr)
+{
+    if (ferror(stdin))
+      {
+	fprintf(stderr, "IO Error: %d\n", errno);
+	exit(1);
+
+      }
+}
+
+
+int main(int argc, char **argv[]) {
+  
+   int (* cmp) (const void*, const void*);
+   char* option = (char*) argv[1]; //option handling
+   if (option && (option+1))
+    {
+      if (*option=='-' && *(option+1)=='f')
+         cmp = &fwrapper;
+    }
+    else cmp = &wrapper;
+
+   char* string; //for read file portion
+   struct stat buf;
+   int turn =fstat(0, &buf);
+   int size = 0;
+   int maxSize=0;
+   int tempWord=0;
+
+   char c[1]; //for byte-by-byte portion
+    
+   int charNum=0; //for both
+   int wordNum=0; 
+   char** words;
+   char *word;
+   int check=0;
+  
+   //READ FILE PORTION
+   // /*
+    if (turn!=-1)
+    {
+      check=1;
+      size = buf.st_size;
+      string = (char*) malloc((size*(sizeof(char))));
+      checkMem(string);
+
+      read(0, string, size);  // Here's your string!
+      checkIO(stdin);
+      for (int i=0; i!=size; i++) // i: iterating through 
+        {                        //  the entire string
+          charNum++; // track # of chars in each word
+          if (string[i]==' ')
+            {
+              if (charNum>maxSize)
+                maxSize=charNum;
+              wordNum++;
+	      charNum=0;
+           }
+
+        }
+      if (string[0]==' ') 
+        wordNum--;
+      if (string[size-1]!= ' ')
+	{  wordNum++;
+	  maxSize++; //this is to account for the extra 
+	}//space you need to add at the end of the string later.
+
+
+   word = (char*)malloc(maxSize*sizeof(char));
+   checkMem(word);
+   words = (char**)malloc(wordNum*sizeof(char*));
+   checkMem(words);
+     
+      charNum=0;
+       //keep track of word#
+      for (int i=0; i!=size; i++)
+        {
+          word[charNum] = string[i];
+          charNum++;
+          if (string[i]==' ')
+            {
+              words[tempWord]= word;
+              word = (char*)malloc(charNum*sizeof(char));
+	      checkMem(word);
+	      charNum=0;
+              tempWord++;
+            }
+
+        }
+      if (tempWord!=wordNum)
+	{
+       	  word[charNum]==' ';
+          words[tempWord] = word;
+	}
+    }   
+  
+
+   charNum=0; //now we use it to keep track of # chars in words
+  // */
+   int counter=0;
+
+   if (check==0)
+     {
+          word = (char*)malloc(sizeof(char));
+	  checkMem(word);
+	  words = (char**)malloc(sizeof(char*));
+	  checkMem(words);
+
+     }
+   
+   while (read(0, c,1)!=0)
+     {
+       checkIO(stdin);
+       counter++;
+       word[charNum] = c[0];
+      charNum++;
+       if (word[charNum-1] == ' ')
+	 {
+	   words = (char**)realloc(words, (wordNum+2)*(sizeof(char*)));
+	   checkMem(words);
+	   words[wordNum]=word;
+	   wordNum++;
+	   word = NULL;
+	   word = (char*) realloc(word,(sizeof(char)));
+	   checkMem(word);
+	   charNum=0;
+        }
+      else
+	{    word = (char*) realloc(word,(charNum+2)*(sizeof(char)));
+	  checkMem(word);
+	}
+     }
+   if (counter!=0)
+     {   if(word[charNum-1] != ' '){
+     word = (char*) realloc(word,(charNum+2)*(sizeof(char)));
+     checkMem(word);
+
+     word[charNum]= ' ';
+    words[wordNum]=word;
+    wordNum++;
+       }
+   }
+
+    //printf ("%i ", wordNum);
+    // printf ("%i\n", charNum);
+       qsort (words, wordNum, sizeof(char*), cmp);
+
+    int  k = 0;
+    while (k != wordNum)
+      {
+	printf("%s", words[k]);
+	free(words[k]);
+	k++;
+	
+      }
+    free(words);
+    free(string);
+
+ 
+    exit(0);
+    //    printf("\n");
+
+    
+}

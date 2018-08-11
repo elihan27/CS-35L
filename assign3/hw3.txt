@@ -1,0 +1,48 @@
+Elizabeth Han
+004815046
+hw3.txt
+
+
+
+Q1: "case_long_iso_time_style" is written twice in the code - once as part 
+of a switch statement, and once as part of a goto statement.  Both instances
+ were deleted.  Since the goto statement was deleted, and therefore control 
+wouldn't be passed to it, it wouldn't have been necessary to remove 
+"case_long_iso_time_style:".  
+
+Q2:  The problem is that it converts YYYY-DD-MM format to month(english 
+abbreviation) DD YYY format. People from countries that don't use the latter
+ format may become confused, and programs that were dependent on a very
+ specific format (the non-patched version, YYYY-MM-DD, etc.) may not work
+ correctly.
+
+Q3. When the script is invoked on an empty file, this is what outputs:
+
+	$ ./randline.py /dev/null
+	Traceback (most recent call last):
+	  File "./randline.py", line 70, in <module>
+    	main()
+ 	 File "./randline.py", line 64, in main
+ 	   sys.stdout.write(generator.chooseline())
+ 	 File "./randline.py", line 34, in chooseline
+ 	   return random.choice(self.lines)
+ 	 File "/usr/lib64/python2.7/random.py", line 274, in choice
+ 	   return seq[int(self.random() * len(seq))]  # raises IndexError 
+	if seq is empty
+	IndexError: list index out of range
+
+This is due to the fact that line 34 calls random.choice(), which raises an 
+IndexError if seq - that is, the file inputed - is completely empty, which
+ it is.
+
+Q4. When the script is invoked using Python 3, this happens:
+	
+	$ python3 randline.py /dev/null
+ 	 File "randline.py", line 65
+    	except IOError as (errno, strerror):
+                      ^
+	SyntaxError: invalid syntax
+
+It raises a SyntaxError because in Python 3, you aren't 
+supposed to passed multiple arguments into the exception handling.
+ 

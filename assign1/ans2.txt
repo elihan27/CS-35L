@@ -1,0 +1,94 @@
+Elizabeth Han
+004815046
+ans1.txt
+
+
+1.  Use man -k <keyword>, where keyword is the word we want to search for.  Found this command by using the hint and reading the manual page (man man).
+
+2.  cp and wc are located in /usr/local/cs/bin. Found this by using TA hint and doing which wc and which cp, as well as reading the which manual page (man which).
+
+3.  Use find /usr/bin/ -name '?' to find the executables, then use man <keyword> to figure out what they do.  Found using TA hint and reading the find manual page (man find)
+    find -name "?" -executable
+
+    /usr/bin/X: soft/symbolic link to another executable
+    /usr/bin/w: Show who is logged on and what they are doing.
+    /usr/bin/[: bash 
+
+4.  Use readlink /usr/bin/emaccs, which links to /etc/alternatives/emacs, then used readlink /etc/alternatives/emacs which links to /usr/bin/emacs-24.3, the file actually executed (we know this because readlink can't read it, so it's not a link.)  Found this command using TA hint (readlink) and reading the readlink manual page (man readlink).
+
+5.  g+s,o-x would mean set group ID on execution and remove execution permission from people that aren't in the group or as a user (i.e. 'others). Figured this out by reading the  chmod manual page(man chmod).
+   Keystrokes: m a n SP c h m o d Enter
+
+6.  You can search for these files using find -mtime -21.  Found this command by reading the find manual page (man find).
+   
+
+7. Ran find -mtime -21 -type d to get these directories:
+
+./Desktop
+./Documents
+./Downloads
+./.cache/abrt
+./.emacs.d/auto-save-list
+./test
+./junk
+
+Found this command by reading the find manual page (man find).
+
+
+8.  Find where find is located by using which find, then searching that directory using find /usr/bin -type l and then piping the result into wordcount using  | wc -l |. Figured out by reading the find (man find) and wc manual pages (man wc) and TA hint.
+    The whole commnad: find /usr/bin -type l | wc -l 
+    246 files are symbolic links
+
+9.  List files by modification time, using ls /usr/lib -l -t. Regular files are listed in black font, so the last file listed in black font will be the oldest regular file.  This file is  libfreeblpriv3.chk.  Figured out by reading the ls manual page (man ls)
+
+10. locale gets its data from the settings of the environment variables that control the locale. Figured this out by reading the locale manual page (man locale).
+
+11. 
+
+C-h t  //find tutorial
+C-s description //attempt to find where tutorial specifies searching commands by keyword
+C-s help //search for help instead and read
+C-h a sort //found it
+
+List of command names that contain sort:
+Buffer-menu-sort 
+sort-columns
+sort-fields
+sort-lines
+sort-numeric-fields
+sort-pages
+sort-paragraphs
+sort-regexp-fields
+tabulated-list-of-col-sort
+tabulated-list-sort
+
+
+12. 
+
+Found meanings of C-M-a through C-M-h by using:
+
+C-h c <sequence>, in which <sequence> is the Emacs keystrokes (e.g. C-h c C-M-a Enter) open help to figure out what the Emacs keystroke does)
+
+C-M-a: move backward to the beginning of a defun 
+C-M-b: move backward across one balanced expression  (sexp) 
+C-M-c: exit from the innermost recursive edit or minibuffer.
+C-M-d: move forward down one level of parentheses.
+C-M-e: move forward to next end of defun.
+C-M-f: move forward across one balanced expression
+C-M-g: undefined
+C-M-h: put mark at end of this defun, point at beginning.
+
+
+13. Used: C-h c C-g Enter (open help to figure out what the Emacs keystroke does)
+This shows that C-g runs keyboard quit - that is, it just causes a quit.
+
+14. Used: C-h f y a n k Enter (open help to figure out what the Emacs function does)
+Yank reinserts ("paste") the last stretch of killed text. More precisely, reinserts the most recent kill, which is the stretch of killed text most recently killed OR yanked.      
+                                                                                         
+15. The difference is that dired lists hidden files.
+
+To use dired: C-x d Backspace Backspace / u s r / b i n Enter
+Figured this out by using: C-h f d i r e d Enter (open help to figure out what the Emacs function does)
+
+
+

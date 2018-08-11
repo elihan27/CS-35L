@@ -1,0 +1,188 @@
+Elizabeth Han
+004815046	
+lab2.log
+
+
+----------LAB----------
+
+
+Checked whether LC_CTYPE = "C" or "POSIX" with locale command
+	$ locale  
+	Result: LC_CTYPE="en_US.UTF-8", so use:
+ 	$ export LC_ALL='C'
+	Result: LC_CTYPE="C"
+
+Created the words file with:
+	$ sort /usr/share/dict/words >  words
+	
+Then created the assign2.html file
+	$ wget https://web.cs.ucla.edu/classes/winter18/cs35L/assign/assign2.html
+	
+Ran the commands specified on the spec on assign2:
+	01. $ tr -c 'A-Za-z' '[\n*]' < assign2.html
+		Every non-alphabetical character is replaced with a newline 			
+character
+	02. $ tr -cs 'A-Za-z' '[\n*]' < assign2.html
+		Every non-alphabetical character is removed.  More specifically, 
+		every non-alphabetical character is replaced with a newline 	
+		character, then every sequence consisting of a repeated newline 
+		character is replaced with a single occurrence of that character,
+ 		due to the -c flag
+        03. $ tr -cs 'A-Za-z' '[\n*]' < assign2.html | sort 
+		Every non-alphabetical character is removed, and what's left is
+		sorted due to the sort command.	
+	04. $ tr -cs 'A-Za-z' '[\n*]' < assign2.html | sort -u 
+		Every non-alphabetical character is removed, the list is sorted,
+		then repeated occurrences of words are removed (this is because of 		
+		the -u command, which only outputs the first of each repeated 
+		word)
+	05. $ tr -cs 'A-Za-z' '[\n*]' < assign2.html | sort -u | comm - words 
+		Every non-alphabetical character is removed, the list is sorted, 
+		then repeated occurrences of words are removed, then what's left
+ 		is compared line by line with the words file (this is due to the 
+		comm command), with the 1st column being lines unique to
+ 		assign2.html, the 2nd column being lines unique to words, and 			
+		the third being lines common to both 
+	06. $ tr -cs 'A-Za-z' '[\n*]' < assign2.html | sort -u | comm -23 - words 
+		This prints out a list of words in alphabetical order that are
+		unique to assign2.html.  Specifically, every non-alphabetical 
+		character is removed, the list is sorted, then repeated
+ 		occurrences of words are removed, then what's left is compared 
+		line by line with the words file, and then the -23 flag removes
+ 		the second and third flag which only leaves words unique to			
+		assign2.html.
+
+
+----------Hawaiian Dictionary----------
+
+Each command I executed got printed to a file (the hw#.html series) so I had 
+a backup of each stage.
+
+I grabbed the "English to Hawaiian" list of words with: 
+	$ wget http://mauimapp.com/moolelo/hwnwdseng.htm
+	Result: creates the hwnwdseng.htm file
+
+Then I tried extracting  every line that has the <td>expression</td> pattern,
+since the lines there are English or Hawaiian words. I tried a variety of things:
+	01. $ sed -n '/<tr>\n<td>^.*$<t\/d>\n<td>^.*$<t\/d>/p' hwnwdseng.htm> 
+	hw01.html 
+	02. $ sed -n '/<tr>/p' hwnwdseng.htm > hw01.html
+	03. $ sed -n '/<tr>.*<\/td>/p' hwnwdseng.htm > hw01.html
+	04. $ sed -n ' /<tr>.*<\/td>/p' hwnwdseng.htm > hw01.html
+	05. $ grep "<tr>.*<\/td>" hwnwdseng.htm > hw01.html
+	06. $ grep "<tr>" hwnwdseng.htm > hw01.html
+	07. $ grep tr hwnwdseng.htm > hw01.html
+	08. $ grep \<tr\>.*\</td\> hwnwdseng.htm < hw00.html 
+	09. $ grep <td>.*</td> hwnwdseng.htm
+	10. $ grep "<td>.*</td>" hwnwdseng.htm
+	11. $ sed -n ' /<tr>.*</td>/p' hwnwdseng.htm
+None of which actually worked, but all of which got me an empty file.  Eventually,
+ I landed upon:
+	$grep "<td>.*</td>" hw.html > hw03.html
+which worked fine.
+
+The last command doesn't get rid of the cases where there are lines that begin 
+<td> and end with </td>, but have nothing in between them.  I hoped to get rid of 
+them in the previous command with:
+	$ grep "<td>.+</td>" hw.html > hw03.html //I believed the + handled 0+ 
+		occurrences of the previous sequence.
+which got me an empty file, so I settled with:
+	$ sed ' /<td><\/td>/d' hw03.html > hw03.html
+
+The file hw04.html now contains a list of English and Hawaiian words.  Since the 
+Hawaiian words are on even lines, I grabbed the even lines with:
+	$ sed -n "2~2 p" hw04.html >hw05.html
+
+The hw05.html file now contains a list of Hawaiian words.  However, these words 
+still end and begin with <td> and </td> respectively.  I tried getting rid of them 
+with the sed delete function:
+	$ sed '/<td>/d' hw05.html 
+which didn't do anything, so I settled for using its substitution function instead:
+	$ sed 's/<td>//g' hw05.html | sed 's/<\/td>//g' > hw06.html
+
+In front of each line, there's a column of spaces, which need to be removed.  I 
+tried removing this first with:
+	$ cut -d ' ' -f 2 hw06.html
+which I hoped would extract the lines after the spaces.  It instead left me with a
+giant realm of blank space. I then tried other commands:
+	1. $ cut -d ' ' -f 1 hw06.html //same
+	2. $ cut -d 'H' -f 2 hw06.html
+	3. $ cut -d '\' -f 2 hw06.html  
+which did pretty much the same thing, so I gave up on the idea that I could just 
+keep everything after the space, and instead noted that the column of spaces was 5
+spaces wide, so I removed the first five characters of every line with: 
+	$ cut -c 5- hw06.html | tr [A-Z] [a-z] > hw07.html
+
+There were underlined letters in the original file, which are marked with <u>
+and </u>.  I got rid of them with: 
+	$ sed 's/<u>//g' hw07.html | sed 's/<\/u>//g' > hw08.html
+
+The grave accent used in the file must be treated as an apostrophe.  Changing 
+that was difficult. I tried replacing ` with ':
+	1. $ sed 's/\`/'/g' hw08.html
+	2. $ sed 's/'`'/'/g' hw08.html
+	3. $ sed 's/\\\`/'/g' hw08.html
+but all this did was make the terminal hang. I eventually figured out that:
+	$ sed "s/\`/\'/g" hw08.html > hw09.html
+would work, due to the double quotations.
+
+Some lines contained multiple words, separated with spaces or commas.  So I 
+split these up with:
+	$ tr -s ' ,' '[\n*]'< hw09.html > hw10.html
+
+To be certain that all the words left were Hawaiian, I extracted only the words 
+that contained letters of the Hawaiian alphabet:
+	$ grep "[pk'mnwlhaeiou]*" hw10.html > hw11.html
+It turns out that last command does not, in actuality, keep only everything
+from the Hawaiian alphabet - to be accurate, it keep strings that have at least 
+two Hawaiian letters.  After a bit of trial and error (variations [pk'mnwlhaeiou]*$ 
+and ^[pk'mnwlhaeiou]*), I used:
+	$ grep "^[pk'mnwlhaeiou]*$" hw10.html > hw11.html
+
+Then to put everything in alphabetical order and remove repeated words:
+	$ sort hw11.html | uniq
+
+I then combined all the commands I used that worked with pipe, which looks like:
+	$ grep "<td>.*</td>" | sed ' /<td><\/td>/d' | sed -n "2~2 p" | sed 's/
+	<td>//g'| sed 's/<\/td>//g' | cut -c 5- | tr [A-Z] [a-z] | sed 's/<u>//g'
+	 | sed 's/<\/u>//g' | sed "s/\`/\'/g" |tr -s ' ,' '[\n*]' | grep 
+	"^[pk'mnwlhaeiou]*$" |sort | uniq
+
+and placed it in buildwords.  I changed the permissions of the executable with:
+	$ chmod +rwx buildwords
+Then checked if everything worked correctly with:
+	$ cat hwnwdseng.htm | ./buildwords | less
+
+To create the hwords file:
+	$ ./buildwords < hwnwdseng.htm  > hwords
+
+To check how many 'Hawaiian' words are spelled incorrectly using the Hawaiian
+dictionary 'hwords':
+	$ tr [A-Z] [a-z] < assign2.html | tr -cs "pk\'mnwlhaeiou" '[\n*]' | 
+	sort -u | comm -23 - hwords | wc -l
+	Result: 198 words
+
+To check how many 'English' words are spelled incorrectly using the English
+dictionary 'words':
+	$ tr -cs 'A-Za-z' '[\n*]' < assign2.html | tr [A-Z] [a-z] | sort -u | 
+	comm -23 - words | wc -l 
+	Result: 39 words.
+
+To check words 'misspelled' in English, but correct in Hawaiian:
+	$ tr -cs 'A-Za-z' '[\n*]' < assign2.html | tr [A-Z] [a-z] | sort -u | comm
+	-23 - words > ehwords  //find the incorrect! 
+	$ comm -12 ehwords hwords //find the words in common
+Examples include: 
+	halau
+	lau
+	wiki
+
+To check words 'misspelled' in Hawaiian, but correct in English:
+	$ tr -cs "A-Za-z'" '[\n*]' < assign2.html | tr [A-Z] [a-z] | sort -u |
+ 	comm -23 - hwords > hewords
+	$ comm -12 hewords words
+Examples include:
+	ascii
+	assign
+	automate
+	

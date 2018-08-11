@@ -1,0 +1,240 @@
+Elizabeth Han
+004815046	
+lab3.txt
+
+
+The dilemma:
+
+
+$ ls -l /bin/bash
+-rwxr-xr-x 1 root root 729040 2009-03-02 06:22 /bin/bash
+The users want the traditional Unix format, which looks like this:
+
+$ ls -l /bin/bash
+-rwxr-xr-x 1 root root 729040 Mar  2  2009 /bin/bash
+
+
+I downloaded the core-utils file the tar version of the core-
+utils file (tar.gz for some reason, wouldn't download on mine), and moved to linux using
+	$ scp coreutils-7.6.tar elizabeh@lnxsrv07.seas.ucla.edu:~
+	$ tar -xf coreutils-7.6.tar 
+Create temporary directory tempdir (since the server will not allow
+changing ls on the root directory).
+Untar the file.
+
+Go into the coreutils-7.6 directory
+	$ cd coreutils-7.6
+
+	$ ./configure --prefix=/u/cs/ugrad/elizabeh/tempdir
+	$ make
+	$ make install
+
+ls still provides you the 'correct' format, since we're still using
+the correct version of ls. To use the core-utils ls, we use:
+	$ export PATH=/u/cs/ugrad/elizabeh/tempdir/bin:$PATH
+
+Now ls -l /bin/bash results in:
+	-rwxr-xr-x 1 root root 960632 2017-08-03 06:36 /bin/bash
+i.e the correct incorrect format.
+
+Then, apply the patch to the ls.c file in the coreutils-7.6/src directory
+cd coreutils-7.6/src
+
+Then type $make in the coreutils-7.6 file.
+
+Export the path
+
+$ export PATH=/u/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src:$PATH
+
+If you make another file then it should be fine. 
+touch -d '1 May 2005 10:22' 
+
+mv src/ls.c /u/cs/ugrad/elizabeh/tempdir2
+mv src/ls00.c ls.c
+
+
+/u/cs/ugrad/elizabeh/tempdir/coreutils-7.6
+
+
+
+Q2.  The problem is that dates are written  YYYY-DD-MM format, 
+
+-rwxr-xr-x 1 root root 729040 2009-03-02 06:22 /bin/bash
+The users want the traditional Unix format, which looks like this:
+
+
+
+
+make[1]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+Making all in lib
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make  all-recursive
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[4]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[4]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+Making all in src
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+make  all-am
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+Making all in doc
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/doc'
+Making all in man
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/man'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/man'
+Making all in po
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/po'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/po'
+Making all in tests
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/tests'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/tests'
+Making all in gnulib-tests
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make  all-recursive
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[4]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+make[2]: Nothing to be done for 'all-am'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+make[1]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+
+
+
+checking periodically with echo $?
+
+scp coreutils-7.6.tar elizabeh@lnxsrv07.seas.ucla.edu:~
+tar -xf coreutils-7.6.tar 
+cd coreutils-7.6
+./configure
+make
+make install
+
+make distclean
+
+./configure --prefix=/u/cs/ugrad/elizabeh/tempdir
+make
+make install
+
+
+ export LC_ALL='en_US.UTF-8'
+
+path
+
+export PATH=/u/cs/ugrad/elizabeh/tempdir/bin:$PATH
+
+
+11236182  -Desideria  11236181 'Atropa Solanthes'  10776086  EOW
+10776072  .           11236185 'Brigit Corvan'     10776081  Nightshade
+  318601  ..          10776073  Claire             11236177 'R*cah'
+10776085  .Atura      11236180  Decima             11236179  Rekke
+10776082  Atropa      11236178  Desme              11236176  sh
+
+
+
+
+
+
+16984821  .                  16984837 'Brigit Corvan'  16984826  EOW
+  318601  ..                 16984822  Claire          16984823  Nightshade
+16984824  Atropa             16984834  Decima          16984831 'R*cah'
+16984825  .Atropa            16984836  -Desideria      16984833  Rekke
+16984835 'Atropa Solanthes'  16984832  Desme           16984830  sh
+
+
+
+
+
+
+
+
+1994035  .      1994046  Adrienne     1994051 'Atropa Solanthes'  10118767  Claire       1994048  Desme   1994037  Nightshade   1994044  sh       1994047  Void
+  318601  ..    10118766 ' Adrienne'   1994039  .Atura              1994050  Decima       1994040  EOW     1994045 'R*cah'      10118770  .Skyrr
+10118768  Adri   1994038  Atropa       1994053 'Brigit Corvan'      1994052  -Desideria  10118769  Li      1994049  Rekke        1994054 '*tain'
+
+
+
+
+
+
+
+
+
+ 1994035  .      1994046  Adrienne     1994051 'Atropa Solanthes'  10118767  Claire       1994048  Desme   1994037  Nightshade   1994044  sh        1994054 '*tain'
+  318601  ..    10118766 ' Adrienne'   1994039  .Atura              1994050  Decima       1994040  EOW     1994045 'R*cah'      10118770  .Skyrr    1994047  Void
+10118768  Adri   1994038  Atropa       1994053 'Brigit Corvan'      1994052  -Desideria  10118769  Li      1994049  Rekke       10118771  ..Skyrr
+
+
+ 1994035  .     10118766  Adrienne     1994039 'Atropa Solanthes'  10118767  Claire       1994052  Desme   1994039  Nightshade   1994044  sh        1994054 '*tain'
+  318601  ..    10118766 ' Adrienne'   1994039  .Atura              1994052  Decima       1994040  EOW     1994054 'R*cah'       1994054  .Skyrr    1994047  Void
+10118768  Adri   1994039  Atropa       1994053 'Brigit Corvan'      1994052  -Desideria  10118769  Li      1994054  Rekke        1994054  ..Skyrr
+
+
+
+
+
+make  all-recursive
+make[1]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+Making all in lib
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make  all-recursive
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[4]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[4]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/lib'
+Making all in src
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+make  all-am
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/src'
+Making all in doc
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/doc'
+Making all in man
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/man'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/man'
+Making all in po
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/po'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/po'
+Making all in tests
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/tests'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/tests'
+Making all in gnulib-tests
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make  all-recursive
+make[3]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[4]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[3]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6/gnulib-tests'
+make[2]: Entering directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+make[2]: Nothing to be done for 'all-am'.
+make[2]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+make[1]: Leaving directory '/w/home.14/cs/ugrad/elizabeh/tempdir/coreutils-7.6'
+
+
+
+
+
+
+

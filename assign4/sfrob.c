@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <errno.h>
+
+int frobcmp(char const *a, char const *b)
+{
+
+  
+  for (;;a++, b++)
+    {
+      char A = *a ^42;
+      char B = *b ^42;
+      if ( (*a==' ') && (*b==' ') )
+	return 0;
+      else if ((A < B) ||  *a== ' ')
+	return -1;
+      else if ((A > B) || *b== ' ')
+	return 1;
+
+    }
+  
+}
+
+int wrapper(const void *a, const void *b)
+{
+  char const *A = *(char**) a;
+  char const *B = *(char**) b;
+
+  return frobcmp (A, B);
+  }
+
+void checkMem(void* ptr)
+{
+  if (ptr==NULL)
+    {
+      fprintf(stderr, "Memory Allocation Error: %d\n", errno);
+      exit(1);
+    }
+
+}
+
+void checkIO(FILE* ptr)
+{
+    if (ferror(stdin))
+      {
+	fprintf(stderr, "IO Error: %d\n", errno);
+	exit(1);
+
+      }
+}
+
+
+int main() {
+   int (* cmp) (const void*, const void*);
+   cmp = &wrapper;
+
+   int charNum = 0;
+   int wordNum = 0;
+    char *word;
+    char **words;
+    word = (char*) malloc(sizeof(char));
+    checkMem(word);
+    words = (char**) malloc(sizeof(char*));
+    checkMem(words);
+    char outer;
+    char inner;
+    char space = 'i'; //this is to act as previous to check for space
+    while ((outer = getchar()) ||outer == '\0'){
+    // while ((outer = getchar()) != EOF){
+    // while(!feof(stdin)){
+    //    while ((outer = getchar()) != feof(stdin))
+
+    //	outer = getchar();
+	checkIO(stdin);
+        if ( feof(stdin))
+	  //	if (outer ==EOF)
+	  break;
+      words = (char**)realloc(words, (wordNum+1)*(sizeof(char*)));
+      checkMem(words);
+
+      charNum = 2;
+	word = NULL;
+        word = (char*) realloc(word,(sizeof(char))); //this is here to stand for the first character
+	checkMem(word);
+
+	word[0] = outer; //because otherwise, we'll end up skipping letters
+	while ((inner = getchar()) || inner == '\0')
+        {
+	  checkIO(stdin);
+    
+	  if (inner==EOF || inner== ' ')
+	    {
+	      if (space != ' ')
+	      word = (char*) realloc(word,charNum*(sizeof(char)));
+	      checkMem(word);
+	      word[charNum-1]= ' ';
+	      break;
+	    }
+	  word = (char*) realloc(word,charNum*(sizeof(char)));
+	  checkMem(word);
+	  word[charNum-1] = inner;
+	  charNum++;
+	  space = inner;
+	    
+        }
+
+        words[wordNum] = word;
+        wordNum++;
+
+    }
+    
+
+    //printf ("%i ", wordNum);
+    // printf ("%i\n", charNum);
+    qsort (words, wordNum, sizeof(char*), cmp);
+
+    int  k = 0;
+    while (k != wordNum)
+      {
+	printf("%s", words[k]);
+	free(words[k]);
+	k++;
+	
+      }
+    free(words);
+
+ 
+    exit(0);
+    //    printf("\n");
+
+    
+}
